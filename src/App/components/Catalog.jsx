@@ -16,8 +16,12 @@ const Catalog = () => {
     event.preventDefault();
 
     const filteredList = books.filter(book => {
-      if (book.titulo.toLowerCase().includes(search.toLowerCase())) return true;
-      if (book.autor.includes(search)) return true;
+      const titulo = book.titulo.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+      const autor = book.autor.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+      const relativeSearch = search.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+
+      if (titulo.includes(relativeSearch)) return true;
+      if (autor.includes(relativeSearch)) return true;
       return false;
     });
     setList(filteredList.map(book => (size.width >= 768) ? <Item book={book} key={book.isbn} /> : <ItemLittler key={book.isbn} book={book} />));
