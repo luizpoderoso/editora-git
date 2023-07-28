@@ -1,23 +1,39 @@
+import { useState } from 'react';
 import './css/components.css';
 import Item from './Item';
 import ItemLittler from './ItemLittler';
 
 const Catalog = () => {
-  const texts = require('../../api/texts.json');
   const books = require('../../api/books.json');
+  const texts = require('../../api/texts.json');
   const size = { width: window.innerWidth, height: window.innerHeight };
 
-  const list = books.map(book => (size.width >= 768) ?  <Item book={book} key={book.isbn} /> : <ItemLittler key={book.isbn} book={book} />);
+  const [search, setSearch] = useState('');
+  const [list, setList] = useState(books.map(book => (size.width >= 768) ? <Item book={book} key={book.isbn} /> : <ItemLittler key={book.isbn} book={book} />));
+
+  // handle
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    const filteredList = books.filter(book => {
+      if (book.titulo.toLowerCase().includes(search.toLowerCase())) return true;
+      if (book.autor.includes(search)) return true;
+      return false;
+    });
+    setList(filteredList.map(book => (size.width >= 768) ? <Item book={book} key={book.isbn} /> : <ItemLittler key={book.isbn} book={book} />));
+
+    setSearch('');
+  }
 
   return (
     <>
       <div className='md:relative w-full inline-flex justify-center md:justify-normal'>
-        { size.width >= 768 && <h1 className='w-fit text-4xl 2xl:text-5xl'>{texts['catalog-title']}</h1>}
+        {size.width >= 768 && <h1 className='w-fit text-4xl 2xl:text-5xl'>{texts['catalog-title']}</h1>}
         <div className='md:absolute flex md:mt-4 right-0'>
-          <label htmlFor='form' className='font-medium mr-2'>{texts['search-label']}</label>
-          <form name='form' className='border rounded-lg text-base xl:text-xl 2xl:text-3xl bg-zinc-50 border-zinc-200'>
-            <input disabled className='px-1 rounded-l-lg appearance-none' />
-            <span className='px-1 rounded-r-lg text-zinc-400 bg-zinc-50 cursor-pointer'>&#10095;</span>
+          <label htmlFor='form' className='2xl:text-xl 2xl:mt-1 font-medium mr-2'>{texts['search-label']}</label>
+          <form onSubmit={(event) => handleSubmit(event, setList)} name='form' className='overflow-hidden border rounded-lg text-base xl:text-xl 2xl:text-3xl bg-zinc-50 border-zinc-200'>
+            <input onChange={e => setSearch(e.target.value)} required value={search} className='px-1 rounded-l-lg appearance-none' />
+            <button type='submit' className='px-1 rounded-r-lg text-zinc-400 bg-white cursor-pointer'>&#10095;</button>
           </form>
         </div>
       </div>
