@@ -1,3 +1,10 @@
 {
-  "title": "LUPO"
+  "title": "LUPO",
+  "nav-home": "Início",
+  "nav-catalog": "Catálogo",
+  "catalog-title": "Todo nosso catálogo...",
+  "search-label": "Pesquise:",
+  "for-author": "de:",
+  "home-title": "Bem vindo ao site da Editora Lupo",
+  "home-subtitle": "Aqui estão algumas categorias recomendadas para você explorar:"
 }
