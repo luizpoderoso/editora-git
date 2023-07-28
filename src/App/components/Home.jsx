@@ -35,6 +35,7 @@ const Sect = props => {
       <hr className='mt-1 border-zinc-200'></hr>
       <ul className='mt-2 inline-flex space-x-10'>
         <BookList category={category} />
+        <Link to={`/categoria/${category}`} className='mt-24 text-6xl transition duration-300 ease-in-out hover:text-red-600'>...</Link>
       </ul>
       <hr className='mt-1'></hr>
     </div>
