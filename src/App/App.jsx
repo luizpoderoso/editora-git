@@ -2,16 +2,15 @@ import { Route, Routes } from "react-router";
 import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import Catalog from "./components/Catalog";
-import Category from "./components/Category";
-import Author from "./components/Author";
 import BookPage from "./components/BookPage";
+import FilteredPage from "./components/FilteredPage";
 
 const App = () => {
   return (
     <div className="min-w-screen min-h-screen flex flex-col bg-zinc-100">
       <Navigation />
 
-      <main className="px-32">
+      <main className="px-1 md:px-8 lg:px-16 xl:px-32">
         <hr className="border-zinc-400"></hr>
 
         <div className="py-4 px-2">
@@ -19,8 +18,8 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/catalogo" element={<Catalog />} />
             <Route path="/livros/:isbn" element={<BookPage />} />
-            <Route path="/categoria/:category" element={<Category />} />
-            <Route path="/autor/:name" element={<Author />} />
+            <Route path="/categoria/:param" element={<FilteredPage filter='categoria' />} />
+            <Route path="/autor/:param" element={<FilteredPage filter='autor' />} />
           </Routes>
         </div>
       </main>
