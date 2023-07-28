@@ -5,5 +5,5 @@ export const correctCategory = (category) => (
       ? 'Design'
       : category === 'frontend'
         ? 'Front-End'
-        : 'invalid'
+        : category
 );
