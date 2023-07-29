@@ -1,5 +1,5 @@
 import './css/components.css';
-import { correctCategory } from "../../js/auxMethods";
+import { authorsArray, correctCategory } from "../../js/auxMethods";
 import { Link } from 'react-router-dom';
 
 const Item = ({ book, texts }) => {
@@ -13,7 +13,10 @@ const Item = ({ book, texts }) => {
       <div className="relative lg:min-w-[280px] lg:min-h-[210px] xl:min-w-[230px] 2xl:min-w-[400px] px-2 lg:px-1 xl:px-3 2xl:px-8 py-4 lg:py-1 xl:py-5 2xl:py-6">
         <h6 className="text-lg font-bold uppercase"><Link className='transition ease-in-out hover:text-red-600' to={`/categoria/${book.categoria}`}>{correctCategory(book.categoria)}</Link></h6>
         <h4 className="mt-2 text-xl font-medium overflow-auto line-clamp-2 no-scroll"><Link to={`/livros/${book.isbn}`}>{book.titulo}</Link></h4>
-        <h5 className="inline-flex font-medium">{texts['for-author']} &nbsp; <Link to={`/autor/${book.autor}`} className='text-zinc-600 transition ease-in-out hover:text-red-600'>{book.autor}</Link></h5>
+        <h5 className="inline-flex font-medium">
+          <span>{texts['for-author']} &nbsp;</span>
+          {authorsArray(book.autor)}
+        </h5>
         <p className='absolute top-[87%] lg:top-[80%] xl:top-[85%] text-4xl'>R${book.preco},00</p>
       </div>
     </li>

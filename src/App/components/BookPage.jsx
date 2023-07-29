@@ -1,11 +1,14 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { correctCategory } from "../../js/auxMethods";
+import { Link, useParams } from "react-router-dom";
+import { authorsArray, correctCategory } from "../../js/auxMethods";
 
 const BookPage = ({ texts, books }) => {
   const { isbn } = useParams()
   const bookUrl = isbn.split('-').join('');
+
   const book = books.find(book => book.isbn === isbn);
-  if(!book) window.location.href = '/*';
+  if (!book) window.location.href = '/*';
+
+  const authorsList = authorsArray(book.autor);
 
   return (
     <div className="w-full h-full">
@@ -17,8 +20,9 @@ const BookPage = ({ texts, books }) => {
               <h3 className="text-xl font-semibold uppercase">{correctCategory(book.categoria)}</h3>
             </Link>
             <h1 className="text-2xl font-medium uppercase overflow-y-auto line-clamp-2">{book.titulo}</h1>
-            <h2>de: &nbsp;
-              <Link to={`/autor/${book.autor}`} className="text-zinc-600 font-medium transition duration-300 ease-in-out hover:text-red-500" >{book.autor}</Link>
+            <h2>
+              <span>{texts['for-author']} &nbsp;</span>
+              {authorsList}
             </h2>
           </div>
           <div className="flex-grow flex flex-col items-center lg:flex-grow lg:flex lg:flex-row lg:items-stretch lg:space-x-8 xl:space-x-20" role="complementary">
