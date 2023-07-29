@@ -7,7 +7,7 @@ const FilteredPage = ({ texts, books, filterKey }) => {
   const { param } = useParams();
   const size = { width: window.innerWidth, height: window.innerHeight };
 
-  const list = books.filter(book => book[filterKey] === param)
+  const list = books.filter(book => book[filterKey].includes(param))
     .map(book => (size.width >= 768) ? <Item key={book.isbn} book={book} texts={texts} /> : <ItemLittler key={book.isbn} book={book} />);
 
   if (list.length == 0) window.location.href = '/*';
