@@ -1,10 +1,11 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { correctCategory } from "../../js/auxMethods";
 
 const BookPage = ({ texts, books }) => {
   const { isbn } = useParams()
   const bookUrl = isbn.split('-').join('');
   const book = books.find(book => book.isbn === isbn);
+  if(!book) window.location.href = '/*';
 
   return (
     <div className="w-full h-full">

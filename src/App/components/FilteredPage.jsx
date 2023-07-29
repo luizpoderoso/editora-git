@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { correctCategory } from '../../js/auxMethods';
 import Item from './Item';
 import ItemLittler from './ItemLittler';
@@ -9,6 +9,8 @@ const FilteredPage = ({ texts, books, filterKey }) => {
 
   const list = books.filter(book => book[filterKey] === param)
     .map(book => (size.width >= 768) ? <Item key={book.isbn} book={book} texts={texts} /> : <ItemLittler key={book.isbn} book={book} />);
+
+  if (list.length == 0) window.location.href = '/*';
 
   return (
     <>
