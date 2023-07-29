@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import Catalog from "./components/Catalog";
 import BookPage from "./components/BookPage";
 import FilteredPage from "./components/FilteredPage";
+import NotFound from "./components/NotFound";
 
 const App = () => {
   const texts = require('../api/texts.json');
@@ -23,6 +24,7 @@ const App = () => {
             <Route path="/livros/:isbn" element={<BookPage texts={texts} books={books} />} />
             <Route path="/categoria/:param" element={<FilteredPage texts={texts} books={books} filterKey='categoria' />} />
             <Route path="/autor/:param" element={<FilteredPage texts={texts} books={books} filterKey='autor' />} />
+            <Route path={"*"} element={<NotFound />} />
           </Routes>
         </div>
       </main>
