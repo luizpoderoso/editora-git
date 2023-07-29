@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
 import ItemLittler from './ItemLittler';
 import { correctCategory } from '../../js/auxMethods';
-const texts = require('../../api/texts.json');
 
-const Home = () => {
+const Home = ({ texts, books }) => {
   const size = { width: window.innerWidth, height: window.innerHeight };
   const limit = setLimit(size.width);
 
@@ -16,9 +15,9 @@ const Home = () => {
       </div>
 
       <section className='mt-4 md:mt-10 space-y-8 md:space-y-20'>
-        <Sect limit={limit} category="programacao" />
-        <Sect limit={limit} category="design" />
-        <Sect limit={limit} category="frontend" />
+        <Sect limit={limit} category="programacao" books={books} />
+        <Sect limit={limit} category="design" books={books} />
+        <Sect limit={limit} category="frontend" books={books} />
       </section>
     </>
   );
@@ -26,9 +25,7 @@ const Home = () => {
 
 export default Home;
 
-const Sect = props => {
-  const category = props.category;
-
+const Sect = ({ limit, category, books }) => {
   return (
     <div>
       <Link className='transition duration-300 ease-in-out hover:text-red-600' to={`/categoria/${category}`}>
@@ -36,24 +33,23 @@ const Sect = props => {
       </Link>
       <hr className='mt-1 border-zinc-200'></hr>
       <ul className='mt-2 inline-flex space-x-5 md:space-x-10'>
-        <BookList limit={props.limit} category={category} />
+        <BookList limit={limit} category={category} books={books} />
       </ul>
       <hr className='mt-1'></hr>
     </div>
   )
 }
 
-const BookList = props => {
-  const books = require('../../api/books.json');
+const BookList = ({ limit, category, books }) => {
   const content = [];
 
   let aux = 0;
   for (const book of books) {
-    if (book.categoria === props.category) {
+    if (book.categoria === category) {
       content.push(<ItemLittler key={book.isbn} book={book} />);
       aux++;
     }
-    if (aux === (props.limit ?? 6)) break;
+    if (aux === (limit ?? 6)) break;
   }
 
   return (

@@ -1,9 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { correctCategory } from "../../js/auxMethods";
 
-function BookPage() {
-  const texts = require('../../api/texts.json');
-  const books = require('../../api/books.json');
+const BookPage = ({ texts, books }) => {
   const { isbn } = useParams()
   const bookUrl = isbn.split('-').join('');
   const book = books.find(book => book.isbn === isbn);

@@ -2,9 +2,7 @@ import './css/components.css';
 import { correctCategory } from "../../js/auxMethods";
 import { Link } from 'react-router-dom';
 
-const Item = props => {
-  const texts = require('../../api/texts.json');
-  const book = props.book;
+const Item = ({ book, texts }) => {
   const imgName = book.isbn.split('-').join('');
 
   return (
