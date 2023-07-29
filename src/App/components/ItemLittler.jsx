@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
-const ItemLittler = props => {
-  const book = props.book;
+const ItemLittler = ({ book }) => {
   const imgName = book.isbn.split('-').join('');
 
   return (

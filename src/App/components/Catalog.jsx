@@ -3,13 +3,11 @@ import './css/components.css';
 import Item from './Item';
 import ItemLittler from './ItemLittler';
 
-const Catalog = () => {
-  const books = require('../../api/books.json');
-  const texts = require('../../api/texts.json');
+const Catalog = ({books, texts}) => {
   const size = { width: window.innerWidth, height: window.innerHeight };
 
   const [search, setSearch] = useState('');
-  const [list, setList] = useState(books.map(book => (size.width >= 768) ? <Item book={book} key={book.isbn} /> : <ItemLittler key={book.isbn} book={book} />));
+  const [list, setList] = useState(books.map(book => (size.width >= 768) ? <Item book={book} key={book.isbn} texts={texts} /> : <ItemLittler key={book.isbn} book={book} />));
 
   // handle
   const handleSubmit = event => {
@@ -24,7 +22,7 @@ const Catalog = () => {
       if (autor.includes(relativeSearch)) return true;
       return false;
     });
-    setList(filteredList.map(book => (size.width >= 768) ? <Item book={book} key={book.isbn} /> : <ItemLittler key={book.isbn} book={book} />));
+    setList(filteredList.map(book => (size.width >= 768) ? <Item key={book.isbn} book={book} texts={texts} /> : <ItemLittler key={book.isbn} book={book} />));
 
     setSearch('');
   }

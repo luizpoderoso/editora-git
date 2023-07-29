@@ -3,12 +3,12 @@ import { correctCategory } from '../../js/auxMethods';
 import Item from './Item';
 import ItemLittler from './ItemLittler';
 
-const FilteredPage = props => {
+const FilteredPage = ({ texts, books, filterKey }) => {
   const { param } = useParams();
   const size = { width: window.innerWidth, height: window.innerHeight };
 
-  const books = require('../../api/books.json');
-  const list = books.filter(book => book[props.filter] === param).map(book => (size.width >= 768) ? <Item book={book} key={book.isbn} /> : <ItemLittler key={book.isbn} book={book} />);
+  const list = books.filter(book => book[filterKey] === param)
+    .map(book => (size.width >= 768) ? <Item key={book.isbn} book={book} texts={texts} /> : <ItemLittler key={book.isbn} book={book} />);
 
   return (
     <>
