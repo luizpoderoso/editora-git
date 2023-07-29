@@ -23,7 +23,7 @@ const BookPage = ({ texts, books }) => {
           <div className="flex-grow flex flex-col items-center lg:flex-grow lg:flex lg:flex-row lg:items-stretch lg:space-x-8 xl:space-x-20" role="complementary">
             <div className="mt-4 p-2 h-full lg:h-[97%] lg:w-2/5 border">
               <h6 className="text-zinc-800 font-medium uppercase">{texts["book-description"]}</h6>
-              <p className="text-justify text-zinc-700">{book.descricao}</p>
+              <p className="line-clamp-[10] overflow-auto overflow-ellipsis text-justify text-zinc-700">{book.descricao}</p>
             </div>
             <div className="mt-4 p-2 h-full lg:h-[97%] w-full lg:w-2/5 border">
               <h6 className="text-zinc-800 font-medium uppercase">{texts["book-characteristics"]}</h6>
@@ -34,6 +34,7 @@ const BookPage = ({ texts, books }) => {
               </ul>
             </div>
           </div>
+          <p className="font-semibold mt-2 2xl:mt-14 text-2xl 2xl:text-4xl">R${book.preco},00</p>
         </div>
       </div>
     </div>
