@@ -1,4 +1,6 @@
+import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router";
+import axios from "axios";
 import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import Catalog from "./components/Catalog";
@@ -7,8 +9,23 @@ import FilteredPage from "./components/FilteredPage";
 import NotFound from "./components/NotFound";
 
 const App = () => {
-  const texts = require('../api/texts.json');
-  const books = require('../api/books.json');
+  const [texts, setTexts] = useState([]);
+  const [books, setBooks] = useState([]);
+
+  useEffect(() => {
+    const API = async () => {
+      try {
+        const {data: text} = await axios.get('../api/texts.json');
+        const {data: book} = await axios.get('../api/books.json');
+        setTexts(text);
+        setBooks(book);
+      }
+      catch (error) {
+        console.log(`Erro: ${error}`);
+      }
+    }
+    API();
+  }, []);
 
   return (
     <div className="min-w-screen min-h-screen flex flex-col bg-zinc-100">
