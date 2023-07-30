@@ -5,13 +5,14 @@ import Catalog from "./components/Catalog";
 import BookPage from "./components/BookPage";
 import FilteredPage from "./components/FilteredPage";
 import NotFound from "./components/NotFound";
+import './app.css';
 
 const App = () => {
   const texts = require('../api/texts.json');
   const books = require('../api/books.json');
 
   return (
-    <div className="min-w-screen min-h-screen flex flex-col bg-zinc-100">
+    <div id="body" className="min-w-screen min-h-screen flex flex-col bg-zinc-100">
       <Navigation texts={texts} />
 
       <main className="px-1 md:px-8 lg:px-16 xl:px-32">
