@@ -13,7 +13,7 @@ const BookPage = ({ texts, books }) => {
   return (
     <div className="w-full h-full">
       <div className="flex flex-col items-center lg:inline-flex lg:items-stretch lg:flex-row">
-        <img alt="Capa do Livro" className="shadow-lg shadow-zinc-500" src={`/assets/books/${bookUrl}.jpg`}></img>
+        <img alt="Capa do Livro" className="shadow-lg shadow-zinc-500 dark:shadow-zinc-800" src={`/assets/books/${bookUrl}.jpg`}></img>
         <div className="h-full flex flex-col items-center md:items-stretch px-10 py-2">
           <div className="text-center lg:text-left">
             <Link to={`/categoria/${book.categoria}`} className="transition duration-300 ease-in-out hover:text-red-500" >
@@ -26,13 +26,13 @@ const BookPage = ({ texts, books }) => {
             </h2>
           </div>
           <div className="flex-grow flex flex-col items-center lg:flex-grow lg:flex lg:flex-row lg:items-stretch lg:space-x-8 xl:space-x-20" role="complementary">
-            <div className="mt-4 p-2 h-full lg:h-[97%] lg:w-2/5 border">
-              <h6 className="text-zinc-800 font-medium uppercase">{texts["book-description"]}</h6>
-              <p className="line-clamp-[10] overflow-auto overflow-ellipsis text-justify text-zinc-700">{book.descricao}</p>
+            <div className="mt-4 p-2 h-full lg:h-[97%] lg:w-2/5 border dark:border-zinc-800">
+              <h6 className="text-zinc-800 dark:text-zinc-50 font-medium uppercase">{texts["book-description"]}</h6>
+              <p className="line-clamp-[10] overflow-auto overflow-ellipsis text-justify text-zinc-700 dark:text-zinc-500">{book.descricao}</p>
             </div>
-            <div className="mt-4 p-2 h-full lg:h-[97%] w-full lg:w-2/5 border">
-              <h6 className="text-zinc-800 font-medium uppercase">{texts["book-characteristics"]}</h6>
-              <ul className="list-inside list-disc">
+            <div className="mt-4 p-2 h-full lg:h-[97%] w-full lg:w-2/5 border dark:border-zinc-800">
+              <h6 className="text-zinc-800 dark:text-zinc-50 font-medium uppercase">{texts["book-characteristics"]}</h6>
+              <ul className="list-inside list-disc dark:text-zinc-500">
                 <li>{texts["book-year"]} {book.ano}</li>
                 <li>{texts["book-pages"]} {book.paginas}</li>
                 <li>{texts["book-isbn"]} {book.isbn}</li>

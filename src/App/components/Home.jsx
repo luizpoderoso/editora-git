@@ -31,11 +31,11 @@ const Sect = ({ limit, category, books }) => {
       <Link className='transition duration-300 ease-in-out hover:text-red-600' to={`/categoria/${category}`}>
         <h3 className='text-2xl font-medium uppercase'>{correctCategory(category)} &#10030;</h3>
       </Link>
-      <hr className='mt-1 border-zinc-200'></hr>
+      <hr className='mt-1 border-zinc-200 dark:border-zinc-800'></hr>
       <ul className='mt-2 inline-flex space-x-5 md:space-x-10'>
         <BookList limit={limit} category={category} books={books} />
       </ul>
-      <hr className='mt-1'></hr>
+      <hr className='mt-1 dark:border-zinc-800'></hr>
     </div>
   )
 }

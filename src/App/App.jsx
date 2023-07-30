@@ -12,11 +12,11 @@ const App = () => {
   const books = require('../api/books.json');
 
   return (
-    <div id="body" className="min-w-screen min-h-screen flex flex-col bg-zinc-100">
+    <div id="body" className="min-w-screen min-h-screen flex flex-col bg-zinc-100 dark:bg-zinc-950 dark:text-zinc-200">
       <Navigation texts={texts} />
 
       <main className="px-1 md:px-8 lg:px-16 xl:px-32">
-        <hr className="border-zinc-400"></hr>
+        <hr className="border-zinc-400 dark:border-zinc-900"></hr>
 
         <div className="py-4 px-2">
           <Routes>
