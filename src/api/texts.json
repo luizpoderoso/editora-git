@@ -12,5 +12,7 @@
   "book-pages": "Páginas:",
   "book-year": "Ano:",
   "book-isbn": "ISBN:",
-  "login-title": "Login"
+  "login-title": "Login",
+  "login-username-placeholder": "Nome de usuário:",
+  "login-password-placeholder": "Senha:"
 }
